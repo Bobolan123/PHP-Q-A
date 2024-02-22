@@ -11,7 +11,6 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </div>
                 <div class="navbar-nav">
-
                     <div class="mr-1">
                         <?php include './views/login.model.php'; ?>
                     </div>
