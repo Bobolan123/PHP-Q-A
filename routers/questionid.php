@@ -1,26 +1,4 @@
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">Question-Answer</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
-                <div class="navbar-nav me-auto">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </div>
-                <div class="navbar-nav">
-                    <div class="mr-1">
-                        <?php include './views/login.model.php'; ?>
-                    </div>
-                    <?php include './views/signup.model.php'; ?>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
+<div class="container">
         <div class="d-flex gap-3">
             <div class="col-8 border border-primary rounded p-3">
                 <div class="mb-3 bg-white rounded p-3">
@@ -73,4 +51,3 @@
             </div>
         </div>
     </div>
-</div>

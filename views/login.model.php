@@ -15,21 +15,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="loginForm" action="../services/login.php" method="post">
                     <div class="form-group">
                         <label for="username" class="col-form-label">Username:</label>
-                        <input type="text" class="form-control" id="username">
+                        <input type="text" class="form-control" id="username" name="username">
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Login</button>
+                <button type="button" class="btn btn-primary" id="loginButton">Login</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Add an event listener to the "Login" button
+    document.getElementById('loginButton').addEventListener('click', function () {
+        // Perform the action when the button is clicked
+        // For example, you can submit the form
+        document.querySelector('#loginForm').submit(); // This submits the form
+    });
+</script>
