@@ -17,9 +17,20 @@
             ?>
             <div class="col-12 border border-primary rounded">
                 <div class="mb-3 bg-white rounded p-3">
-                    <p class="fs-5 fw-bold mb-1">Name:
-                        <?php echo $row['username']; ?>
-                    </p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <p class="fs-5 fw-bold mb-1">Name:
+                            <?php echo $row['username']; ?>
+                        </p>
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li><button class="dropdown-item" id="updateBtn">Update</button></li>
+                                <li><button class="dropdown-item delete-btn" data-question-id="<?php echo $row['id']; ?>">Delete</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <p class="fs-6">
                         <?php echo $row['question_text']; ?>
                     </p>
@@ -59,3 +70,27 @@
     }
     ?>
 </div>
+
+<script>
+    // Add event listener to delete buttons
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const questionId = button.getAttribute('data-question-id');
+            const confirmDelete = confirm('Are you sure you want to delete this question?');
+            if (confirmDelete) {
+                // Submit the form to delete the question
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = '../services/delete_question.php'; // Change the action to your delete_question.php script
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'delete_question_id';
+                input.value = questionId;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        });
+    });
+</script>

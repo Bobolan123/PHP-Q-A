@@ -27,8 +27,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><button class="dropdown-item" id="logoutBtn">Log Out</button></li>
                         </ul>
-                </div>
-                    
+                </div>    
                           ';
 
                 } else {

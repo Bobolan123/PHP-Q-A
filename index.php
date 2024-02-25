@@ -22,7 +22,9 @@ switch ($path) {
         if (isset($queryParams['question_id'])) {
             // Include logic to fetch a specific question based on the question_id
             include './routers/questionid.php';
-        } else {
+        } elseif (isset($queryParams['update_question_id'])) {
+            include './routers/update-question.php';
+        }else {
             // Include logic to fetch all questions
             include './routers/questions.php';
         }
