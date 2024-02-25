@@ -17,6 +17,10 @@ switch ($path) {
         // Handle request for the home page
         include './routers/home.php';
         break;
+    case '/admin':
+        // Handle request for the home page
+        include './routers/admin.php';
+        break;
     case '/questions':
         // Check if the question_id is provided in the query parameters
         if (isset($queryParams['question_id'])) {
@@ -24,7 +28,7 @@ switch ($path) {
             include './routers/questionid.php';
         } elseif (isset($queryParams['update_question_id'])) {
             include './routers/update-question.php';
-        }else {
+        } else {
             // Include logic to fetch all questions
             include './routers/questions.php';
         }

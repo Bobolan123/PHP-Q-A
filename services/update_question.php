@@ -32,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
             // Check if the update was successful
             if ($stmt->rowCount() > 0) {
-                echo "Question updated successfully.";
+                header("Location: /questions");
+            exit();
             } else {
                 echo "Failed to update question.";
             }
