@@ -21,10 +21,6 @@
                             src="https://bloganchoi.com/wp-content/uploads/2022/02/avatar-trang-y-nghia.jpeg" alt="">
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Link 1</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                        <li><a class="dropdown-item" href="#">Link 3</a></li>
-                        <li><hr class="dropdown-divider"></li>
                         <li><button class="dropdown-item" id="logoutBtn">Log Out</button></li>
                         </ul>
                 </div>    
