@@ -2,7 +2,7 @@
     <h1 class="mb-3">Admin Dashboard:</h1>
     <table class="table table-hover">
         <thead class="bg-primary">
-            <tr>
+            <tr >
                 <th scope="col">id</th>
                 <th scope="col">username</th>
                 <th scope="col">role</th>
@@ -64,3 +64,4 @@
         }
     }
 </script>
+

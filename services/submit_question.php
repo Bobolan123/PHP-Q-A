@@ -7,9 +7,10 @@ if (isset($_POST['submit'])) {
     // Get the user ID from the session
     $userId = $_SESSION["user_id"];
 
-    // Get form data
+    // Get form data including module_id
     $questionText = $_POST['question_text'];
     $imgQuestion = $_FILES['imgQuestion'];
+    $moduleId = $_POST['module_id']; // Get selected module_id
 
     // Save image file
     $targetDirectory = "uploads/"; // Directory to save images
@@ -23,11 +24,12 @@ if (isset($_POST['submit'])) {
     }
 
     // Insert data into database using prepared statements to prevent SQL injection
-    $sql = "INSERT INTO questions (question_text, img, user_id) VALUES (:questionText, :img, :userId)";
+    $sql = "INSERT INTO questions (question_text, img, user_id, module_id) VALUES (:questionText, :img, :userId, :moduleId)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':questionText', $questionText);
     $stmt->bindParam(':img', $targetFile);
     $stmt->bindParam(':userId', $userId); // Bind the user ID
+    $stmt->bindParam(':moduleId', $moduleId); // Bind the module ID
 
     try {
         $stmt->execute();
@@ -39,3 +41,4 @@ if (isset($_POST['submit'])) {
     // Close connection
     $conn = null;
 }
+

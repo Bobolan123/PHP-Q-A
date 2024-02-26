@@ -1,9 +1,11 @@
-<button type="button" class="btn btn-warning btn-sm" onclick="updateUserModal(<?php echo $row['id']; ?>, '<?php echo $row['username']; ?>', '<?php echo $row['role']; ?>')">
+<button type="button" class="btn btn-warning btn-sm"
+    onclick="updateUserModal(<?php echo $row['id']; ?>, '<?php echo $row['username']; ?>', '<?php echo $row['role']; ?>')">
     Update
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="updateModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="updateModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -27,6 +29,12 @@
                             <option value="user">User</option>
                         </select>
                     </div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </form>
             </div>
             <div class="modal-footer">
@@ -43,13 +51,13 @@
         document.getElementById('userId').value = userId;
         document.getElementById('newUsername').value = username;
         document.getElementById('newRole').value = role;
-        
+
         // Show the modal
         $('#updateModalCenter').modal('show');
     }
 
     // Attach click event listener to the update button
-    document.getElementById('updateButton').addEventListener('click', function() {
+    document.getElementById('updateButton').addEventListener('click', function () {
         // Retrieve user data from form fields
         var userId = document.getElementById('userId').value;
         var newUsername = document.getElementById('newUsername').value;

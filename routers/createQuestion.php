@@ -1,3 +1,12 @@
+<?php
+include("connection.php");
+
+// Fetch module names from the database
+$sql = "SELECT id, name FROM modules";
+$stmt = $conn->query($sql);
+$modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <div class="container">
     <form action="../services/submit_question.php" method="post" enctype="multipart/form-data">
         <h1>Create Question:</h1>
@@ -9,6 +18,11 @@
             <label for="imgQuestion" class="form-label">Image for question:</label>
             <input class="form-control" type="file" id="imgQuestion" name="imgQuestion">
         </div>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="module_id" style="max-width:95px">
+            <?php foreach ($modules as $module): ?>
+                <option value="<?php echo $module['id']; ?>"><?php echo $module['name']; ?></option>
+            <?php endforeach; ?>
+        </select>
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
 </div>
