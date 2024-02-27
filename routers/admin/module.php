@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between mb-3">
         <h2 class="">Module:</h2>
         <?php
-        include("C:\\xampp\\htdocs\\COMP1841\\Final_project\\views\\create_module.php");
+        include("C:\\xampp\\htdocs\\Final_project\\views\\create_module.php");
         ?>
     </div>
 
@@ -30,7 +30,7 @@
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>";
                 // Add buttons for update and delete actions
-                include("C:\\xampp\\htdocs\\COMP1841\\Final_project\\views\\updateModule.module.php");
+                include("C:\\xampp\\htdocs\\Final_project\\views\\updateModule.module.php");
                 // Add onclick event to call JavaScript function for delete confirmation
                 echo "<button type='button' class='btn btn-danger btn-sm' onclick='deleteModule(" . $row['id'] . ", \"" . $row['name'] . "\")'>Delete</button>";
                 echo "</td>";

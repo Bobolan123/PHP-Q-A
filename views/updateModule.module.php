@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label for="newModuleName" class="col-form-label">New Module Name:</label>
                         <input type="text" class="form-control" id="newModuleName" name="newModuleName">
-                        
+
                     </div>
                 </form>
             </div>

@@ -1,5 +1,9 @@
 <div class="container">
-    <h1 class="mb-3">Admin Dashboard:</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mb-3">Admin Dashboard:</h1>
+        <a href="admin/module" class="btn btn-primary">Module --></a>
+    </div>
+
     <table class="table table-hover">
         <thead class="bg-primary">
             <tr>
@@ -31,7 +35,7 @@
                 echo "<td>" . $row['post_count'] . "</td>";
                 echo "<td>";
                 // Include the modal for updating user information
-                include("C:\\xampp\\htdocs\\COMP1841\\Final_project\\views\\updateUser.model.php");
+                include("C:\\xampp\\htdocs\\Final_project\\views\\updateUser.model.php");
                 // Add a delete button for each user
                 echo "<button type='button' class='btn btn-danger btn-sm' onclick='deleteUser(" . $row['id'] . ")'>Delete</button>";
                 echo "</td>";

@@ -39,11 +39,11 @@ if (isset($_SESSION["user_id"])) {
                             src="https://bloganchoi.com/wp-content/uploads/2022/02/avatar-trang-y-nghia.jpeg" alt="">
                     </button>
                     <ul class="dropdown-menu">';
-                // Check if user is an admin
-                if (isset($role) && $role === 'admin') {
-                    echo '<li><a class="dropdown-item" href="/admin">Admin</a></li>';
-                }
-                echo '
+                    // Check if user is an admin
+                    if (isset($role) && $role === 'admin') {
+                        echo '<li><a class="dropdown-item" href="/admin">Admin</a></li>';
+                    }
+                    echo '
                         <li><hr class="dropdown-divider"></li>
                         <li><button class="dropdown-item" id="logoutBtn">Log Out</button></li>
                         </ul>

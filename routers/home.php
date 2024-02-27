@@ -7,6 +7,12 @@
                 <h1 data-aos="fade-up">Find Your Answer<br>Right Here<br><a href="/createQuestion"><button
                             class="btn btn-danger w-100">Start
                             Now</button></a></h1>
+                <?php
+                include("C:\\xampp\\htdocs\\Final_project\\views\\email.model.php");
+
+ 
+                ?>
+
             </div>
             <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
                 <img src="assets/img/question2.jpg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
