@@ -17,7 +17,7 @@
         <tbody>
             <?php
             // Assuming you have a database connection established
-            include("connection.php");
+            include ("connection.php");
 
             // Fetch users and count their posts from the database
             $query = "SELECT u.id, u.username, u.role, COUNT(q.id) AS post_count
@@ -35,7 +35,7 @@
                 echo "<td>" . $row['post_count'] . "</td>";
                 echo "<td>";
                 // Include the modal for updating user information
-                include("C:\\xampp\\htdocs\\Final_project\\views\\updateUser.model.php");
+                include ("C:\\xampp\\htdocs\\Final_project\\views\\updateUser.model.php");
                 // Add a delete button for each user
                 echo "<button type='button' class='btn btn-danger btn-sm' onclick='deleteUser(" . $row['id'] . ")'>Delete</button>";
                 echo "</td>";

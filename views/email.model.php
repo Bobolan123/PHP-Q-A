@@ -15,7 +15,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="emailForm" action="../services/send_email.php" method="post">
+                <form id="emailForm" action="../services/send_email.php" method="post" class="h5">
                     <div class="form-group">
                         <label for="emailTitle">Title</label>
                         <input type="text" class="form-control" id="emailTitle" name="emailTitle">

@@ -6,12 +6,11 @@
                 class="col-lg-5 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
                 <h1 data-aos="fade-up">Find Your Answer<br>Right Here<br><a href="/createQuestion"><button
                             class="btn btn-danger w-100">Start
-                            Now</button></a></h1>
-                <?php
-                include("C:\\xampp\\htdocs\\Final_project\\views\\email.model.php");
-
- 
-                ?>
+                            Now</button></a>
+                    <?php
+                    include ("C:\\xampp\\htdocs\\Final_project\\views\\email.model.php");
+                    ?>
+                </h1>
 
             </div>
             <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">

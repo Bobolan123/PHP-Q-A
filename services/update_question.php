@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         // Get the updated question text and question ID from the form
         $updated_question_text = $_POST['question_text'];
         $update_question_id = $_POST['update_question_id'];
-
+        $module_id = $_POST['module_id'];
         // Check if an image file is uploaded
         if (isset($_FILES['imgQuestion']) && $_FILES['imgQuestion']['error'] === UPLOAD_ERR_OK) {
             // Upload the image file
@@ -23,11 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             move_uploaded_file($imgTmpName, $targetFilePath);
 
             // Update the question text and image in the database
-            $sql = "UPDATE questions SET question_text = :question_text, img = :img WHERE id = :update_question_id";
+            $sql = "UPDATE questions SET question_text = :question_text, img = :img, module_id = :module_id WHERE id = :update_question_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':question_text', $updated_question_text);
             $stmt->bindParam(':img', $targetFilePath);
             $stmt->bindParam(':update_question_id', $update_question_id);
+            $stmt->bindParam(':module_id', $module_id);
             $stmt->execute();
 
             // Check if the update was successful

@@ -8,8 +8,8 @@ if(isset($_POST['delete_question_id'])) {
     $question_id = $_POST['delete_question_id'];
 
     try {
-        // First, delete related records from question_answer table
-        $stmt = $conn->prepare("DELETE FROM question_answer WHERE question_id = :question_id");
+        // First, delete related records from the answers table
+        $stmt = $conn->prepare("DELETE FROM answers WHERE question_id = :question_id");
         $stmt->bindParam(':question_id', $question_id);
         $stmt->execute();
 

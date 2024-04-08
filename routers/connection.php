@@ -13,3 +13,4 @@ try {
 } catch (PDOException $e) {
     echo "<script>console.log('Connection failed: ' );</script>" . $e->getMessage();
 }
+

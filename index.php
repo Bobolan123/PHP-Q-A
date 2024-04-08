@@ -1,8 +1,23 @@
 <?php
-session_start(); // Start session before any output
+session_start();
 
-include('header.php');
-require("./views/navbar.php");
+include ('header.php');
+require ("./views/navbar.php");
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "php";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // Set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "<script>console.log('Connected DB successfully' );</script>";
+
+} catch (PDOException $e) {
+    echo "<script>console.log('Connection failed: ' );</script>" . $e->getMessage();
+}
 
 $url = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : '/';
 $parts = parse_url($url);
@@ -12,17 +27,48 @@ if (isset($parts['query'])) {
     parse_str($parts['query'], $queryParams);
 }
 
+// Fetch user role based on user ID from session
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT role FROM users WHERE id = :id");
+    $stmt->bindParam(':id', $userId);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $userRole = $user['role'];
+}
+
 switch ($path) {
     case '/':
         // Handle request for the home page
         include './routers/home.php';
         break;
     case '/admin':
-        // Handle request for the home page
+        // Check if the user is logged in and has admin role
+        if (!isset($_SESSION['user_id']) || $userRole !== 'admin') {
+            // Redirect or show unauthorized message
+            ?>
+            <div class="container">
+                You need to login to create question
+            </div>
+            <?php
+
+            exit();
+        }
+        // Include logic for admin dashboard
         include './routers/admin.php';
         break;
     case '/admin/module':
-        // Handle request for the home page
+        // Check if the user is logged in and has admin role
+        if (!isset($_SESSION['user_id']) || $userRole !== 'admin') {
+            // Redirect or show unauthorized message
+            ?>
+            <div class="container">
+                You need to login to create question
+            </div>
+            <?php
+            exit();
+        }
+        // Include logic for admin module
         include './routers/admin/module.php';
         break;
     case '/questions':
@@ -57,6 +103,6 @@ switch ($path) {
         break;
 }
 
-include('footer.php');
-$pdo = null;
+include ('footer.php');
+$conn = null;
 ?>

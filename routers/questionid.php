@@ -1,6 +1,6 @@
 <div class="container">
     <?php
-    require_once("connection.php");
+    require_once ("connection.php");
 
     // Check if the question ID is provided in the URL
     if (isset($_GET['question_id'])) {
@@ -20,19 +20,18 @@
 
         $question = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
         // Display the question, its asker, and the answer count
         if ($question) {
             ?>
-            <div class="d-flex gap-3">
-                <div class="col-8 rounded p-3">
+            <div class="row">
+                <div class="col-md-8">
                     <div class="mb-3 bg-white rounded p-3">
                         <p class="fs-5 fw-bold mb-1">Question:</p>
                         <p class="fs-6">
                             <?php echo $question['question_text']; ?>
                         </p>
                         <img src="../services/<?php echo $question['img']; ?>" alt="" class="img-fluid"
-                            style="max-width: 800px; max-height: 800px; width:100%;">
+                            style="max-width: 800px; width:100%;">
                     </div>
 
                     <!-- Add code to display answers if needed -->
@@ -42,7 +41,8 @@
                         </p>
 
                         <!-- Form for submitting answers -->
-                        <form method="post" action="../services/submit_answer.php"> <!-- Changed action to submit_answer.php -->
+                        <form method="post" action="../services/submit_answer.php">
+                            <!-- Changed action to submit_answer.php -->
                             <input type="hidden" name="question_id" value="<?php echo $_GET['question_id']; ?>">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control m-2" placeholder="Answer" aria-label="Username"
@@ -71,16 +71,20 @@
                                         <?php echo $answer['commenter']; ?>
                                     </p>
                                 </div>
-                                <p style="margin-left: 40px">
-                                    <?php echo $answer['answer_text']; ?>
-                                </p>
+                                <div style="margin-left: 40px; max-width: 600px; overflow-wrap: break-word;">
+                                    <p>
+                                        <?php echo $answer['answer_text']; ?>
+                                    </p>
+                                </div>
+
                             </div>
+
                             <?php
                         }
                         ?>
                     </div>
                 </div>
-                <div class="col-4 mt-3">
+                <div class="col-md-4">
                     <div class="bg-white rounded p-4 d-flex flex-column">
                         <div class="input-group-prepend d-flex flex-column justify-content-center align-items-center">
                             <!-- Add code to display user information if needed -->
@@ -94,6 +98,7 @@
                     </div>
                 </div>
             </div>
+
             <?php
         } else {
             echo "Question not found.";
