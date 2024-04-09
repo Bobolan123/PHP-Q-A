@@ -46,11 +46,7 @@ switch ($path) {
         // Check if the user is logged in and has admin role
         if (!isset($_SESSION['user_id']) || $userRole !== 'admin') {
             // Redirect or show unauthorized message
-            ?>
-            <div class="container">
-                You need to login to create question
-            </div>
-            <?php
+            include ('./views/errors/403.html');
 
             exit();
         }
@@ -90,6 +86,15 @@ switch ($path) {
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <h5>You need to login to create question</h5>
             </div>
+            <script> Swal.fire({
+                // position: "top-end",
+                icon: 'error',
+                // showConfirmButton: false,
+                // title: 'Can not  Failed',
+                text: 'You need to login to create question',
+                timer: 3000,
+                // backdrop: false,
+            });</script>
             <?php
             exit(); // Stop further execution
         }
@@ -99,7 +104,7 @@ switch ($path) {
     // Add more routes as needed
     default:
         // Handle 404 Not Found error
-        include './routers/404.php';
+        include './views/errors/404.html';
         break;
 }
 

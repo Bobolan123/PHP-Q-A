@@ -26,3 +26,23 @@ $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
 </div>
+
+<script>
+    <?php if(isset($_SESSION["createQuestion_success"])): ?>
+        <?php if($_SESSION["createQuestion_success"] === true): ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'createQuestion Successful',
+                text: 'You have successfully signed up!',
+            });
+        <?php else: ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'createQuestion Failed',
+                text: '<?php echo $_SESSION["createQuestion_error"]; ?>',
+            });
+        <?php endif; ?>
+        <?php unset($_SESSION["createQuestion_success"]); ?>
+        <?php unset($_SESSION["createQuestion_error"]); ?> // Unset the session variables after displaying the SweetAlert
+    <?php endif; ?>
+</script>

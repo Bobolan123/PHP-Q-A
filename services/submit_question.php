@@ -1,9 +1,9 @@
 <?php
 session_start(); // Start the session
+require_once ("connection.php");
+
 // Check if form is submitted
 if (isset($_POST['submit'])) {
-    require_once("connection.php");
-
     // Get the user ID from the session
     $userId = $_SESSION["user_id"];
 
@@ -12,15 +12,26 @@ if (isset($_POST['submit'])) {
     $imgQuestion = $_FILES['imgQuestion'];
     $moduleId = $_POST['module_id']; // Get selected module_id
 
+    // Check if all fields are filled
+    if (empty($questionText) || empty($imgQuestion['name']) || empty($moduleId)) {
+        $_SESSION["createQuestion_error"] = "All fields are required";
+        $_SESSION["createQuestion_success"] = false;
+        header("Location: /createQuestion");
+        exit;
+    }
+
     // Save image file
     $targetDirectory = "uploads/"; // Directory to save images
     // Save image file with user ID appended to the filename
-    $targetFile = $targetDirectory . "_" . $userId. basename($imgQuestion["name"]) ;
+    $targetFile = $targetDirectory . "_" . $userId . basename($imgQuestion["name"]);
 
     if (move_uploaded_file($imgQuestion["tmp_name"], $targetFile)) {
-        echo "The file " . htmlspecialchars(basename($imgQuestion["name"])) . " has been uploaded.";
+        $_SESSION["createQuestion_success"] = true;
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        $_SESSION["createQuestion_error"] = "Sorry, there was an error uploading your file.";
+        $_SESSION["createQuestion_success"] = false;
+        header("Location: /createQuestion");
+        exit;
     }
 
     // Insert data into database using prepared statements to prevent SQL injection
@@ -33,12 +44,19 @@ if (isset($_POST['submit'])) {
 
     try {
         $stmt->execute();
-        echo "New record created successfully";
+        $_SESSION["createQuestion_success"] = true;
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        $_SESSION["createQuestion_error"] = "Error: " . $e->getMessage();
+        $_SESSION["createQuestion_success"] = false;
+        header("Location: /createQuestion");
+        exit;
     }
 
     // Close connection
     $conn = null;
-}
 
+    // Redirect back to the form page
+    header("Location: /createQuestion");
+    exit;
+}
+?>

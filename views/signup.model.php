@@ -47,3 +47,23 @@
         document.querySelector('#signUpModal form').submit(); // This submits the form
     });
 </script>
+
+<script>
+    <?php if(isset($_SESSION["signup_success"])): ?>
+        <?php if($_SESSION["signup_success"] === true): ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Signup Successful',
+                text: 'You have successfully signed up!',
+            });
+        <?php else: ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Signup Failed',
+                text: '<?php echo $_SESSION["signup_error"]; ?>',
+            });
+        <?php endif; ?>
+        <?php unset($_SESSION["signup_success"]); ?>
+        <?php unset($_SESSION["signup_error"]); ?> // Unset the session variables after displaying the SweetAlert
+    <?php endif; ?>
+</script>

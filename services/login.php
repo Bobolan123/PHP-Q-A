@@ -20,6 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Verify password
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"];
+            $_SESSION["login_success"] = true;
+            // Redirect to the homepage
+            header("Location: /");
+            exit;
         } else {
             $is_invalid = true;
         }
@@ -27,12 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $is_invalid = true;
     }
 
-    // Redirect after setting session or if login is invalid
-    if (!$is_invalid && isset($_SESSION["user_id"])) {
+    if ($is_invalid) {
+        $_SESSION["login_success"] = false;
+        // Redirect back to login page
         header("Location: /");
         exit;
-    } else {
-        header("Location: /questions");
     }
 }
-
