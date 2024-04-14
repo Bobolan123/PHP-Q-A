@@ -25,6 +25,7 @@ require_once ("connection.php"); ?>
             INNER JOIN users u ON q.user_id = u.id
             LEFT JOIN answers a ON q.id = a.question_id
             LEFT JOIN modules m ON q.module_id = m.id
+            WHERE q.status_question = true  
             GROUP BY q.id";
     $stmt = $conn->query($sql);
 

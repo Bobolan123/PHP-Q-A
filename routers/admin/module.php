@@ -1,9 +1,13 @@
 <div class="container">
     <div class="d-flex justify-content-between mb-3">
         <h2 class="">Module:</h2>
-        <?php
-        include("C:\\xampp\\htdocs\\Final_project\\views\\create_module.php");
-        ?>
+        <div>
+            <?php
+            include ("C:\\xampp\\htdocs\\Final_project\\views\\create_module.php");
+            ?>
+            <a href="/admin" class="btn btn-primary"><-- Users </a>
+            <a href="/admin/status" class="btn btn-primary"> Questions --> </a>
+        </div>
     </div>
 
     <table class="table table-hover">
@@ -17,7 +21,7 @@
         <tbody>
             <?php
             // Include connection file
-            require_once("connection.php");
+            require_once ("connection.php");
 
             // Fetch data from modules table
             $query = "SELECT id, name FROM modules";
@@ -30,7 +34,7 @@
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>";
                 // Add buttons for update and delete actions
-                include("C:\\xampp\\htdocs\\Final_project\\views\\updateModule.module.php");
+                include ("C:\\xampp\\htdocs\\Final_project\\views\\updateModule.module.php");
                 // Add onclick event to call JavaScript function for delete confirmation
                 echo "<button type='button' class='btn btn-danger btn-sm' onclick='deleteModule(" . $row['id'] . ", \"" . $row['name'] . "\")'>Delete</button>";
                 echo "</td>";

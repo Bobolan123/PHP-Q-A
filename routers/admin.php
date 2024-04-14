@@ -11,7 +11,7 @@
                 <th scope="col">username</th>
                 <th scope="col">role</th>
                 <th scope="col">Post's Number</th>
-                <th scope="col">Actions</th> <!-- Added Actions column header -->
+                <th scope="col">Actions</th> 
             </tr>
         </thead>
         <tbody>

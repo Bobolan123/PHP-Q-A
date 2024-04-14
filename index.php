@@ -57,15 +57,21 @@ switch ($path) {
         // Check if the user is logged in and has admin role
         if (!isset($_SESSION['user_id']) || $userRole !== 'admin') {
             // Redirect or show unauthorized message
-            ?>
-            <div class="container">
-                You need to login to create question
-            </div>
-            <?php
+            include ('./views/errors/403.html');
             exit();
         }
         // Include logic for admin module
         include './routers/admin/module.php';
+        break;
+    case '/admin/status':
+        // Check if the user is logged in and has admin role
+        if (!isset($_SESSION['user_id']) || $userRole !== 'admin') {
+            // Redirect or show unauthorized message
+            include ('./views/errors/403.html');
+            exit();
+        }
+        // Include logic for admin module
+        include './routers/admin/status.php';
         break;
     case '/questions':
         // Check if the question_id is provided in the query parameters
@@ -87,14 +93,14 @@ switch ($path) {
                 <h5>You need to login to create question</h5>
             </div>
             <script> Swal.fire({
-                // position: "top-end",
-                icon: 'error',
-                // showConfirmButton: false,
-                // title: 'Can not  Failed',
-                text: 'You need to login to create question',
-                timer: 3000,
-                // backdrop: false,
-            });</script>
+                    // position: "top-end",
+                    icon: 'error',
+                    // showConfirmButton: false,
+                    // title: 'Can not  Failed',
+                    text: 'You need to login to create question',
+                    timer: 3000,
+                    // backdrop: false,
+                });</script>
             <?php
             exit(); // Stop further execution
         }
