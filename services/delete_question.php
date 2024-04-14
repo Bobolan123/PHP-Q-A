@@ -1,9 +1,9 @@
 <?php
 // Include connection file
-require_once("connection.php");
+require_once ("connection.php");
 
 // Check if the delete_question_id is provided
-if(isset($_POST['delete_question_id'])) {
+if (isset($_POST['delete_question_id'])) {
     // Get the question ID to delete
     $question_id = $_POST['delete_question_id'];
 
@@ -19,7 +19,7 @@ if(isset($_POST['delete_question_id'])) {
         $stmt->execute();
 
         // Check if the question is successfully deleted
-        if($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) {
             // Redirect back to the questions page after successful deletion
             header("Location: /questions");
             exit();
@@ -27,7 +27,7 @@ if(isset($_POST['delete_question_id'])) {
             // If the question is not found, display an error message
             echo "Question not found.";
         }
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         // If an error occurs, display the error message
         echo "Error: " . $e->getMessage();
     }

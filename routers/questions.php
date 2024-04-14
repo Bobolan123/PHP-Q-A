@@ -1,4 +1,21 @@
+<?php
+require_once ("connection.php"); ?>
 <div class="container">
+    <div class="col-12 rounded mb-3">
+        <div class="row">
+            <div class="col-11">
+                <input type="text" id="searchInput" class="form-control p-3" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default" placeholder="Enter your questions" list="output">
+                <datalist id="output">
+                    <option value="what is data" data-id="1"></option>
+                    <option value="what is dom" data-id="2"></option>
+                </datalist>
+            </div>
+            <div class="col-1">
+                <button type="button" id="submitButton" class="btn btn-primary">Ok</button>
+            </div>
+        </div>
+    </div>
     <?php
     require_once ("connection.php");
 
@@ -135,6 +152,50 @@
                 alert("You're not allowed to update this question.");
             }
 
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('submitButton').addEventListener('click', function () {
+        // Get the value and data-id attribute of the selected option
+        var selectedOption = document.querySelector('#output option[value="' + document.getElementById('searchInput').value + '"]');
+        if (selectedOption) {
+            var questionId = selectedOption.getAttribute('data-id');
+            // Redirect to the questions page with the question_id parameter
+            window.location.href = 'http://localhost:8000/questions?question_id=' + questionId;
+        } else {
+            // alert('Please select a question from the list.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Type something',
+                text: "Find the question's title",
+            });
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchInput").on('input', function () {
+            var searchQuery = $(this).val();
+            if (searchQuery !== "") {
+                $.ajax({
+                    type: 'POST',
+                    url: 'search.php',
+                    data: {
+                        name: searchQuery
+                    },
+                    success: function (data) {
+                        $("#output").html(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            } else {
+                $("#output").html("");
+            }
         });
     });
 </script>

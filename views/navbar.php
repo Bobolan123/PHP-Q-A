@@ -16,7 +16,7 @@ if (isset($_SESSION["user_id"])) {
 }
 
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Question-Answer</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

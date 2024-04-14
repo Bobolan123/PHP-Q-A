@@ -32,13 +32,13 @@ $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if($_SESSION["createQuestion_success"] === true): ?>
             Swal.fire({
                 icon: 'success',
-                title: 'createQuestion Successful',
-                text: 'You have successfully signed up!',
+                title: 'create question Successful',
+                text: 'You have successfully created a question!',
             });
         <?php else: ?>
             Swal.fire({
                 icon: 'error',
-                title: 'createQuestion Failed',
+                title: 'create question Failed',
                 text: '<?php echo $_SESSION["createQuestion_error"]; ?>',
             });
         <?php endif; ?>

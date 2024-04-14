@@ -42,3 +42,22 @@
         document.querySelector('#emailForm').submit(); // This submits the form
     });
 </script>
+<script>
+    <?php if (isset($_SESSION["sendEmail_success"])): ?>
+        <?php if ($_SESSION["sendEmail_success"] === true): ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Send Email Successful',
+                text: 'You have successfully sent email!',
+            });
+        <?php else: ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Send Email Failed',
+                text: '<?php echo $_SESSION["sendEmail_error"]; ?>',
+            });
+        <?php endif; ?>
+        <?php unset($_SESSION["sendEmail_success"]); ?>
+        <?php unset($_SESSION["sendEmail_error"]); ?>
+    <?php endif; ?>
+</script>
